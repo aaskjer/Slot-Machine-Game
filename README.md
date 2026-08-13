@@ -2,6 +2,12 @@
 
 Slot Machine Game is a chat game built for streamer.bot, supporting twitch, kick, and youtube.
 
+![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fimg.shields.io%2Fbadge%2Fany_text-Twitch%2C_Kick%2C_YouTube-white?label=supported%20plattform)
+![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fimg.shields.io%2Fbadge%2Fany_text-streamer.bot-white?label=tool&color=%230b73ff)
+![GitHub License](https://img.shields.io/github/license/aaskjer/Slot-Machine-Game)
+![GitHub Release](https://img.shields.io/github/v/release/aaskjer/Slot-Machine-Game)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/aaskjer/Slot-Machine-Game/total)
+
 ---
 
 # Overview
