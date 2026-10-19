@@ -6,75 +6,75 @@
 
 **Q: Where are the config files stored?**
 
-Everything lives under your Streamer.bot base directory:
+In your Streamer.bot folder:
 
 ```
 Chat Games/Slot Machine Game/SMG-Settings.json      ← all settings, messages & emote pools
 Chat Games/Slot Machine Game/SMG-Settings.json.bak  ← automatic backup, written before every save
-Chat Games/Logs/SMG-log-yyyy-MM-dd.txt              ← daily action log (one file per day)
+Chat Games/Logs/SMG-log-yyyy-MM-dd.txt              ← action log, one file per day
 ```
 
-You should never need to edit `SMG-Settings.json` by hand — use the built-in Settings GUI instead.
+There's no need to edit `SMG-Settings.json` by hand; the settings window covers all of it.
 
-**Q: The Settings GUI won't open / crashes immediately. What do I do?**
+**Q: The settings window won't open or closes right away. What do I do?**
 
-- Check the Streamer.bot log for error details and report it [here](https://github.com/aaskjer/Slot-Machine-Game/issues).
-- If `SMG-Settings.json` is malformed, delete it (or restore `SMG-Settings.json.bak`) and reopen the GUI — a fresh default file is generated automatically if none exists.
+- Check the Streamer.bot log for the error and report it [here](https://github.com/aaskjer/Slot-Machine-Game/issues).
+- A damaged `SMG-Settings.json` doesn't keep the window shut. It opens with the settings from `SMG-Settings.json.bak`, or with the defaults if there's no readable backup, and keeps the damaged file as `SMG-Settings.json.broken`. Save writes a working file again.
 
 **Q: How do I reset all settings to defaults?**
 
-Open the Settings GUI and click **Reset to Defaults** (red button, bottom-left). After confirming, this rewrites the entire settings file, including the default emote pools for every platform, and re-applies the default cooldown durations to the Streamer.bot command. The GUI then reopens automatically.
+Click the reset button at the bottom left of the settings window and confirm. The whole settings file is rewritten, default emotes for every platform included, and the command's cooldowns go back to their defaults. Only your dark or light theme stays. The window then reopens on its own.
 
-**Q: I saved settings but nothing changed in-game. Why?**
+**Q: I saved my settings, but nothing changed in the game. Why?**
 
-**Save** and **Save & Exit** both write immediately to `SMG-Settings.json`. The game script reloads settings fresh on every command execution, so the very next `!slots` (or whatever your trigger is) picks up the change — no Streamer.bot restart needed. **Cancel** discards anything unsaved and just closes the window.
+**Save** and **Save & Exit** write to `SMG-Settings.json` at once, and the game reads that file fresh on every spin. The very next `!slots` uses the new settings, with no Streamer.bot restart. Cooldowns reach the command the moment you save. **Cancel** closes the window and drops anything unsaved.
 
-**Q: What's the ☀️/🌙 button in the bottom-left corner?**
+**Q: What does the ☀️/🌙 button at the bottom left do?**
 
-Toggles the Settings GUI between light and dark theme. It saves your preference and reopens the window immediately.
+It switches the settings window between dark and light. The choice is saved, and the window reopens straight away, without your unsaved changes.
 
 ---
 
 ## 🎮 Starting & Betting
 
-**Q: How does a bet amount get chosen?**
+**Q: How is the bet chosen?**
 
-Whatever the player types after the command maps to an amount:
+By what the player types after the command:
 
-| Input | Result |
+| Input | Bet |
 |---|---|
-| *(nothing)* | Uses **Default Bet** |
-| `all` / `alles` / `all in` | Entire balance |
-| `half` / `hälfte` / `50%` | Half of balance |
-| `third` / `drittel` / `33%` | A third of balance |
-| `quarter` / `viertel` / `25%` | A quarter of balance |
-| `random` / `zufall` / `rnd` | A random amount between Min Bet and Max Bet (clamped to what the user can afford) |
-| any number | That exact amount |
+| *(nothing)* | The **Default bet** |
+| `all` / `alles` / `all in` | The whole balance |
+| `half` / `hälfte` / `50%` | Half the balance |
+| `third` / `drittel` / `33%` | A third of the balance |
+| `quarter` / `viertel` / `25%` | A quarter of the balance |
+| `random` / `zufall` / `rnd` | A random amount between Minimum and Maximum bet, capped at what the player can afford |
+| any number | Exactly that amount |
 
-Aliases are matched case-insensitively, and both English and German phrasing work.
+Upper or lower case doesn't matter, and the German words work just like the English ones.
 
-**Q: My bet got rejected — why?**
+**Q: My bet got rejected. Why?**
 
-A bet fails validation (and sends the configured error message) if it's non-numeric/negative/has decimals, exceeds your current balance, falls below **Minimum Bet**, or exceeds **Maximum Bet**. Set Minimum/Maximum Bet to `0` to disable that particular ceiling/floor.
+A bet is refused, with the matching error message, if it isn't a whole positive number, is more than the balance, or lies below the **Minimum** or above the **Maximum** bet. Set Minimum or Maximum to `0` to switch that limit off.
 
 **Q: How do I block specific users or groups from playing entirely?**
 
-Set **Blocked Groups** (General tab) to a comma-separated list of Streamer.bot user groups — members are silently blocked from playing at all, with no message sent. This is different from the **Addicted List** (see below), which still lets users play but with penalties.
+Add their Streamer.bot user groups under **Blocked groups** on the Access page: type a group name and press Enter. Members can't play and get no message; a channel point redemption of theirs is refunded. That's different from the **Addicted** list (see below), whose members still play, with penalties.
 
 ---
 
 ## 💰 Points & Payouts
 
-**Q: What points system does the game use?**
+**Q: Which points system does the game use?**
 
-Auto-detected in this priority order:
-1. **StreamUP Currency Core** — reads the `currency_ProductSettings` global.
-2. **tawmae Loyalty Points** — reads the `tawmae_Settings_LOYALTY POINTS` global.
-3. **Config fallback** — uses **Points Var** / **Points Name** from the General tab.
+It checks in this order:
+1. **StreamUP Currency Core**, through the `currency_ProductSettings` global.
+2. **tawmae LOYALTY POINTS**, through the `tawmae_Settings_LOYALTY POINTS` global.
+3. **Its own settings**: **Points variable** and **Shown in chat as** on the Game page.
 
-If you're on a custom currency with a different variable name, set Points Var/Points Name yourself.
+On a custom currency with a different variable name, enter that name there.
 
-**Q: How is a win actually calculated?**
+**Q: How exactly is a win calculated?**
 
 ```
 rawPayout   = bet × MatchPayout% × emoteWeight ÷ 100
@@ -84,27 +84,27 @@ payout     += JackpotPool                                (only on a jackpot win,
 payout      = round(payout × (1 − AddictedPayoutCut))    (only if the user is on the Addicted list)
 ```
 
-`MatchPayout%` is whichever tier (2- through 6-Match Payout) matches how many slots came up the same, and higher-weight emotes pay proportionally more per match.
+`MatchPayout%` comes from the payout row for the number of matching slots, 2 to 5 alike. When every slot matches, the jackpot row applies instead, whatever the number of slots. Higher-weight emotes pay proportionally more.
 
 **Q: What determines whether a spin wins at all?**
 
-**Allow Match Chance (%)** is the odds of a spin producing any match, and **Allow Jackpot Chance (%)** is the odds of every slot matching (jackpot). **Reroll Attempts** controls how hard the game tries to avoid an accidental match on a spin that wasn't meant to win — with a small **Emote Pool Size**, accidental matches can still slip through even after all reroll attempts.
+**Match chance %** is the odds of a spin producing any match, and **Jackpot chance %** the odds of every slot matching, the jackpot. **Rerolls** sets how hard the game tries to avoid an accidental match on a spin that wasn't meant to win. With a small **Emote pool**, accidental matches can still slip through after every reroll.
 
 ---
 
 ## 🎰 Slots & Emotes
 
-**Q: What does Emote Weight actually do?**
+**Q: What does an emote's weight actually do?**
 
-Weight selection is inverted: low-weight emotes appear more often but pay less per match, high-weight emotes are rarer but pay more. Only emotes whose weight falls within **Min/Max Emote Weight** are eligible to appear at all — you can use this to exclude the cheapest or the most valuable emotes from a spin entirely.
+Weight works in reverse for how often an emote comes up: low-weight emotes appear often and pay less per match, high-weight ones are rarer and pay more. Only emotes with a weight between **Min weight** and **Max weight** can appear at all, which lets you leave out the cheapest or the most valuable ones.
 
-**Q: How do I edit the emote pool?**
+**Q: How do I edit the emotes?**
 
-Platform Emotes tab → pick a platform sub-tab → fill in the Emote/Weight fields (Kick also needs an ID and Name) and click **Add**. Click an existing entry in the list to edit or remove it. **Reset to Default** replaces the whole pool for that platform with the built-in 10-emote set.
+On the Emotes page, pick a platform, enter the emote and its weight (Kick also needs an ID and a name) and click **Add**. Change a weight right in the list, or take an emote out with **×**. **Reset to default** replaces that platform's emotes with the built-in set of 10.
 
-**Q: Why does Kick need an ID *and* a Name?**
+**Q: Why does Kick need an ID *and* a name?**
 
-Kick emote codes are built from the numeric ID, e.g. `[emote:1730803:emojiRich]`. Open the emote graphic in a new browser tab to find its ID in the URL.
+Kick builds its emote codes from both, e.g. `[emote:1730803:emojiRich]`. To find the ID, open the emote's picture in a new browser tab: it's the number in the address.
 
 ---
 
@@ -112,25 +112,25 @@ Kick emote codes are built from the numeric ID, e.g. `[emote:1730803:emojiRich]`
 
 **Q: How does the Jackpot Pool grow?**
 
-Every bet lost in points (from a non-addicted, non-Free Mode spin; Channel Points redemptions in `cost` or `fixed` mode stake channel points and add nothing) adds the lost amount to the pool, which chat calls the **Jackpool**. It's tracked separately per platform. A player only has a *chance* at winning the pool on top of their normal jackpot payout if they hit the jackpot **and** their bet was at least **Min Jackpot Bet** — winning it resets the pool back to 0.
+Every bet lost in points goes in, unless the player is addicted or the spin is free. Channel point redemptions in `cost` or `fixed` mode stake channel points and add nothing. Chat calls the pool the **Jackpool**, and each platform has its own. A player wins it on top of the normal jackpot payout only by hitting the jackpot with a bet of at least **Bet to win the pool**; the pool then starts again at 0.
 
-**Q: I disabled the Jackpot Pool but my messages still mention it. Why?**
+**Q: I turned the Jackpot Pool off, but my messages still mention it. Why?**
 
-They shouldn't — wrap any pool-specific wording in your custom message with `{jackpot}...{/jackpot}`. That whole segment is automatically stripped out whenever **Enable Jackpot Pool** is off, so you can write natural sentences without leftover broken text like "got added to the pool of now Points!".
+Wrap anything about the pool in `{jackpot}...{/jackpot}` in your own messages. While **Jackpot pool** is off, the game drops that whole part, so chat never sees broken leftovers like "got added to the pool of now Points!".
 
 ---
 
 ## ⭐ Role Boosts (Subscriber / VIP)
 
-**Q: How do Subscriber/VIP boosts stack?**
+**Q: How do Subscriber and VIP boosts stack?**
 
-Additively:
+They add up:
 
 ```
 RoleBoostMultiplier = 1.0 + (SubBoost% if subscribed) + (VipBoost% if VIP)
 ```
 
-Example: 10% sub boost + 20% VIP boost on a 500-point win = `500 × 1.30 = 650`. Both are **Twitch only** — there's no subscriber/VIP concept on YouTube or Kick, so they have no effect there.
+With a 10% subscriber and a 20% VIP boost, a 500-point win pays `500 × 1.30 = 650`. Both boosts are **Twitch only**: on YouTube and Kick the game doesn't check for subscribers or VIPs, so they have no effect there.
 
 ---
 
@@ -138,22 +138,22 @@ Example: 10% sub boost + 20% VIP boost on a 500-point win = `500 × 1.30 = 650`.
 
 **Q: What does putting someone on the Addicted list actually do?**
 
-Three things, configured on the **Game** tab:
-- Their win (including any jackpot pool bonus) is reduced by **Addicted Payout Cut** — default 50%, hard-capped at 99% so a win can never turn into a net loss.
-- If a **User Cooldown** is configured, it also holds them on Channel Points redemptions, which Streamer.bot's command cooldown doesn't cover.
-- Their losses **never** contribute to the Jackpot Pool, so they can't intentionally grow it hoping to win it back later.
+Three things:
+- Their win, including any Jackpool, shrinks by the **Addicted cut** on the Game page: 50% by default, hard-capped at 99% so a win can never turn into a net loss.
+- If a **Per viewer** cooldown is set, it also holds them on channel point redemptions, which Streamer.bot's command cooldown doesn't cover.
+- Their losses **never** go into the Jackpot Pool, so they can't grow it on purpose and hope to win it back later.
 
 **Q: Individual users or whole groups?**
 
-Both — **Addicted Users** (comma-separated usernames) and **Addicted Groups** (comma-separated Streamer.bot groups) can be set at the same time; matching either flags the user.
+Both. Add names under **Addicted viewers** and Streamer.bot groups under **Addicted groups** on the Access page; a match in either one counts.
 
-**Q: Do addicted users get a different chat message?**
+**Q: Do addicted users get different chat messages?**
 
-Yes — **Addicted Win**, **Addicted Loss**, and **Addicted Jackpot** (Messages tab) are used instead of the normal ones. The default Win/Jackpot messages include an `{addictedCutPercent}` placeholder to spell out the penalty, e.g. *"Addiction Fee: your win was cut by 50%"*. These only apply outside of Free Mode — the Free Game messages always take priority for free spins, since no real currency changes hands there.
+Yes. **Addicted Win**, **Addicted Loss** and **Addicted Jackpot** on the Messages page replace the normal ones. The default Addicted Win and Jackpot messages spell out the penalty with `{addictedCutPercent}`, e.g. *"Addiction Fee: your win was cut by 50%"*. Free spins always get the Free messages instead, since no points change hands there.
 
 **Q: Can I preview the effect before saving?**
 
-Yes — the **Live Preview** panel at the bottom of the Game tab includes a 🎯 Addicted row that recalculates live as you type, showing the exact payout range an addicted user would receive.
+Yes. Under **Try a spin** on the Game page, pick **Addicted** as the one who spins: the line below shows what a win and a jackpot pay them, and **Spin** plays a round with their messages.
 
 ---
 
@@ -161,19 +161,19 @@ Yes — the **Live Preview** panel at the bottom of the Game tab includes a 🎯
 
 **Q: How do I let people play without risking points?**
 
-Enable **Free Mode** globally in the Game tab. No currency changes hands either way, and dedicated **Free Win/Loss/Jackpot** messages are used instead of the normal ones.
+Switch on **Free mode** on the Game page. No points change hands, and the **Free Win**, **Free Loss** and **Free Jackpot** messages replace the normal ones.
 
 ---
 
 ## 💬 Messages & Customization
 
-**Q: What placeholders are available?**
+**Q: Which placeholders are available?**
 
-Placeholders vary per message — hover any field's label in the GUI for a full tooltip listing what it supports (e.g. `{user}`, `{amount}`, `{currency}`, `{newBalance}`, `{jackpotPoolCurrent}`, `{addictedCutPercent}`). Every message is fully rewritable in the Messages tab.
+That depends on the message. On the Messages page, the placeholders of the selected message sit as buttons below its text: click one to insert it, hover over it to see what it stands for (e.g. `{user}`, `{amount}`, `{currency}`, `{newBalance}`, `{jackpotPoolCurrent}`, `{addictedCutPercent}`). Every message can be rewritten there.
 
-**Q: A number in chat looks like `52467` instead of `52,467` — how do I fix that?**
+**Q: A number in chat shows as `52467` instead of `52,467`. How do I fix that?**
 
-Set **Number Separator** (General tab) to whatever character you want as a thousands separator, e.g. `.` or `,`.
+Pick the format under **Numbers** on the Messages page, e.g. `12.345` or `12,345`.
 
 ---
 
@@ -181,7 +181,7 @@ Set **Number Separator** (General tab) to whatever character you want as a thous
 
 **Q: How are cooldowns enforced?**
 
-**Global Cooldown** and **User Cooldown** (Cooldown tab) are written straight into Streamer.bot's own per-command cooldown system when you save — the game script itself doesn't gate anything except reacting with a chat message when Streamer.bot reports an active cooldown. For addicted users the game also applies the User Cooldown itself, so it holds them on Channel Points redemptions too (see Addicted List above).
+**Everyone** and **Per viewer** under **Cooldown in seconds** on the Access page go straight into the Streamer.bot command's own cooldowns when you save. The game itself holds nothing up; it only answers in chat when Streamer.bot reports a running cooldown. For addicted players it applies the per-viewer cooldown itself, so it holds them on channel point redemptions too (see Addicted List above).
 
 ---
 
@@ -189,22 +189,22 @@ Set **Number Separator** (General tab) to whatever character you want as a thous
 
 **Q: How do I let a Channel Points reward trigger a spin?**
 
-1. Pick **Channel points** under **How viewers play** (Access page). On Twitch this turns the chat command off, so only the reward starts a spin there.
+1. Pick **Channel points** under **How viewers play** on the Access page. On Twitch this turns the chat command off, so only the reward starts a spin there.
 2. Paste your **Reward ID**. Other rewards are left alone, and without a Reward ID no redemption starts a spin.
-3. Pick what is bet (**Reward cost**, **Typed amount**, **Fixed** or **Free**).
+3. Pick what is bet: **Reward cost**, **Typed amount**, **Fixed** or **Free**.
 
-Channel Points are a Twitch-only concept: YouTube and Kick have none, so there the chat command keeps working in this mode.
+The slot machine takes channel point redemptions from Twitch only, so on YouTube and Kick the chat command keeps working in this mode.
 
-**Q: What does each Bet Mode do?**
+**Q: What does each bet mode do?**
 
 | Mode | Behaviour |
 |---|---|
-| `cost` | Bet equals the reward's channel point cost. The channel points are the stake: a loss doesn't touch the viewer's points, a win is paid in points |
-| `fixed` | Every redemption bets the exact **Fixed Bet Amount**, staked in channel points like `cost` |
-| `input` | User types a bet in their own points into the reward's text field; it's checked against their balance, and a loss takes it off |
-| `free` | Bet is forced to 0 — free play, no points wagered, and the Free messages are used |
+| `cost` | The reward's channel point cost is the bet, and the channel points are the stake: a loss doesn't touch the viewer's points, a win is paid in points |
+| `fixed` | Every redemption bets the exact **Fixed bet**, staked in channel points like `cost` |
+| `input` | The viewer types a bet in their own points into the reward's text field; it's checked against their balance, and a loss takes it off |
+| `free` | The bet is 0: free play, nothing wagered, and the Free messages are used |
 
-Min and Max Bet are only enforced for `input`/`fixed` modes — `cost` is left uncapped since the reward cost is already streamer-controlled.
+Minimum and Maximum bet only apply to `input` and `fixed`. `cost` has no cap, since you already set the reward's price.
 
 ---
 
@@ -212,7 +212,7 @@ Min and Max Bet are only enforced for `input`/`fixed` modes — `cost` is left u
 
 **Q: Where do I review past spins?**
 
-Other Modules → **Action-Log** tab. It automatically merges every day's log file into one searchable, filterable table (filter by Result or Platform, free-text search, click any row to see the full raw log line at the bottom). Enable/disable logging entirely with **Write Log** (General tab).
+On the Log page. It merges every day's log file into one table: search it for names, platforms or amounts, filter by result or date, and click a row to see its full log line below. **Write a log file per day**, under the table, switches logging on or off.
 
 ---
 
@@ -220,7 +220,7 @@ Other Modules → **Action-Log** tab. It automatically merges every day's log fi
 
 **Q: Which platforms are supported?**
 
-Twitch, YouTube, and Kick, all at once: the game plays on every platform its chat command listens to. To leave a platform out, untick it in the command in Streamer.bot (for example **Kick Message**). The platform is auto-detected from the incoming event, and the Jackpot Pool, points balances, and command cooldowns are all tracked independently per platform.
+Twitch, YouTube and Kick, all at once: the game plays on every platform its chat command listens to. To leave a platform out, untick it in the command in Streamer.bot (for example **Kick Message**). The platform is detected from the incoming event, and each platform keeps its own Jackpot Pool, points balances and command cooldowns.
 
 **Q: Does "Send as /me" work on YouTube and Kick?**
 
@@ -232,7 +232,7 @@ No, /me exists on Twitch only. On YouTube and Kick the messages always go out as
 
 **Q: How do I know if a new version is out?**
 
-Every time you open the Settings GUI, it checks the GitHub releases API (3-second timeout, fails silently if you're offline). If a newer version exists, you'll get a one-time popup asking whether to open the [releases page](https://github.com/aaskjer/Slot-Machine-Game/releases), and the window title shows a 🔔 marker until you update.
+Every time the settings window opens, it asks GitHub's releases API in the background (3-second timeout; offline, it stays silent). If a newer version exists, a red **Update** pill appears at the top and the window title gets a 🔔. Click the pill to open the [releases page](https://github.com/aaskjer/Slot-Machine-Game/releases).
 
 ---
 
