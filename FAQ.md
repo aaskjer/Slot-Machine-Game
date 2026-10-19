@@ -112,7 +112,7 @@ Kick emote codes are built from the numeric ID, e.g. `[emote:1730803:emojiRich]`
 
 **Q: How does the Jackpot Pool grow?**
 
-Every losing bet (from a non-addicted, non-Free Mode spin) adds the lost amount to the pool. It's tracked separately per platform. A player only has a *chance* at winning the pool on top of their normal jackpot payout if they hit the jackpot **and** their bet was at least **Min Jackpot Bet** — winning it resets the pool back to 0.
+Every bet lost in points (from a non-addicted, non-Free Mode spin; Channel Points redemptions in `cost` or `fixed` mode stake channel points and add nothing) adds the lost amount to the pool, which chat calls the **Jackpool**. It's tracked separately per platform. A player only has a *chance* at winning the pool on top of their normal jackpot payout if they hit the jackpot **and** their bet was at least **Min Jackpot Bet** — winning it resets the pool back to 0.
 
 **Q: I disabled the Jackpot Pool but my messages still mention it. Why?**
 
@@ -140,7 +140,7 @@ Example: 10% sub boost + 20% VIP boost on a 500-point win = `500 × 1.30 = 650`.
 
 Three things, configured on the **Game** tab:
 - Their win (including any jackpot pool bonus) is reduced by **Addicted Payout Cut** — default 50%, hard-capped at 99% so a win can never turn into a net loss.
-- If a **User Cooldown** is configured, they always wait **twice** as long between spins as everyone else.
+- If a **User Cooldown** is configured, it also holds them on Channel Points redemptions, which Streamer.bot's command cooldown doesn't cover.
 - Their losses **never** contribute to the Jackpot Pool, so they can't intentionally grow it hoping to win it back later.
 
 **Q: Individual users or whole groups?**
@@ -181,7 +181,7 @@ Set **Number Separator** (General tab) to whatever character you want as a thous
 
 **Q: How are cooldowns enforced?**
 
-**Global Cooldown** and **User Cooldown** (Cooldown tab) are written straight into Streamer.bot's own per-command cooldown system when you save — the game script itself doesn't gate anything except reacting with a chat message when Streamer.bot reports an active cooldown. Addicted users get an *additional*, independently tracked wait on top of the normal User Cooldown (see Addicted List above).
+**Global Cooldown** and **User Cooldown** (Cooldown tab) are written straight into Streamer.bot's own per-command cooldown system when you save — the game script itself doesn't gate anything except reacting with a chat message when Streamer.bot reports an active cooldown. For addicted users the game also applies the User Cooldown itself, so it holds them on Channel Points redemptions too (see Addicted List above).
 
 ---
 
@@ -189,22 +189,22 @@ Set **Number Separator** (General tab) to whatever character you want as a thous
 
 **Q: How do I let a Channel Points reward trigger a spin?**
 
-1. Enable **Only Channel Points** (Other Modules → Twitch Channel Points tab) — this disables the chat command entirely and only accepts reward redemptions.
-2. Paste your **Target Reward ID** (leave blank to accept any reward redemption).
-3. Pick a **Bet Mode**.
+1. Pick **Channel points** under **How viewers play** (Access page). On Twitch this turns the chat command off, so only the reward starts a spin there.
+2. Paste your **Reward ID**. Other rewards are left alone, and without a Reward ID no redemption starts a spin.
+3. Pick what is bet (**Reward cost**, **Typed amount**, **Fixed** or **Free**).
 
-Channel Points redemptions are a Twitch-only concept, so this has no effect on YouTube or Kick.
+Channel Points are a Twitch-only concept: YouTube and Kick have none, so there the chat command keeps working in this mode.
 
 **Q: What does each Bet Mode do?**
 
 | Mode | Behaviour |
 |---|---|
-| `cost` | Bet equals the reward's channel point cost |
-| `fixed` | Every redemption bets the exact **Fixed Bet Amount** |
-| `input` | User types their bet into the reward's text field |
-| `free` | Bet is forced to 0 — free play, no points wagered |
+| `cost` | Bet equals the reward's channel point cost. The channel points are the stake: a loss doesn't touch the viewer's points, a win is paid in points |
+| `fixed` | Every redemption bets the exact **Fixed Bet Amount**, staked in channel points like `cost` |
+| `input` | User types a bet in their own points into the reward's text field; it's checked against their balance, and a loss takes it off |
+| `free` | Bet is forced to 0 — free play, no points wagered, and the Free messages are used |
 
-Max Bet is only enforced for `input`/`fixed` modes — `cost` is left uncapped since the reward cost is already streamer-controlled.
+Min and Max Bet are only enforced for `input`/`fixed` modes — `cost` is left uncapped since the reward cost is already streamer-controlled.
 
 ---
 
@@ -220,7 +220,11 @@ Other Modules → **Action-Log** tab. It automatically merges every day's log fi
 
 **Q: Which platforms are supported?**
 
-Twitch, YouTube, and Kick — toggle each on in General → **Select Platform(s)**. The platform is auto-detected from the incoming event, and the Jackpot Pool, points balances, and command cooldowns are all tracked independently per platform.
+Twitch, YouTube, and Kick, all at once: the game plays on every platform its chat command listens to. To leave a platform out, untick it in the command in Streamer.bot (for example **Kick Message**). The platform is auto-detected from the incoming event, and the Jackpot Pool, points balances, and command cooldowns are all tracked independently per platform.
+
+**Q: Does "Send as /me" work on YouTube and Kick?**
+
+No, /me exists on Twitch only. On YouTube and Kick the messages always go out as plain chat, whatever the switch says, and the settings window marks both /me switches **Twitch only**.
 
 ---
 
