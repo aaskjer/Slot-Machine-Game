@@ -88,7 +88,9 @@ payout      = round(payout × (1 − AddictedPayoutCut))    (only if the user is
 
 **Q: What determines whether a spin wins at all?**
 
-**Match chance %** is the odds of a spin producing any match, and **Jackpot chance %** the odds of every slot matching, the jackpot. **Rerolls** sets how hard the game tries to avoid an accidental match on a spin that wasn't meant to win. With a small **Emote pool**, accidental matches can still slip through after every reroll.
+The jackpot comes first: **Jackpot chance %** of all spins land it, every slot alike. Of the other spins, **Match chance %** may land matching slots. Their slots are drawn freely, so a match is likely but not certain. Every remaining spin rerolls repeats to avoid a match, and **Rerolls** sets how hard it tries; with a small **Emote pool**, an accidental match can still slip through after every reroll. Free draws can land all alike too, so jackpots come a little more often than Jackpot chance % says.
+
+So the two chances aren't the win rate itself. The bar at the top of the Game page works out the real odds of your settings: how often a spin ends in a jackpot, a win or a loss.
 
 ---
 
@@ -139,7 +141,7 @@ With a 10% subscriber and a 20% VIP boost, a 500-point win pays `500 × 1.30 = 6
 **Q: What does putting someone on the Addicted list actually do?**
 
 Three things:
-- Their win, including any Jackpool, shrinks by the **Addicted cut** on the Game page: 50% by default, hard-capped at 99% so a win can never turn into a net loss.
+- Their win, including any Jackpool, shrinks by the **Addicted cut** on the Game page: 50% by default and capped at 99%, so a win always pays something, even if that's less than the bet.
 - If a **Per viewer** cooldown is set, it also holds them on channel point redemptions, which Streamer.bot's command cooldown doesn't cover.
 - Their losses **never** go into the Jackpot Pool, so they can't grow it on purpose and hope to win it back later.
 
