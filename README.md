@@ -38,21 +38,21 @@ Chat spins the slots with `!slots <bet>` (or a bet alias). The game rolls the re
 | 🎰 **Spin** | A viewer runs the slots command with a bet | The bet is deducted (unless Free Mode) and the reels are rolled. |
 | ✅ **Win** | 2 or more slots match | Payout is calculated from the match tier and emote weight, and credited to the viewer's balance. |
 | 🔥 **Jackpot** | All slots match | Maximum payout is awarded, plus the accumulated Jackpot Pool if the bet met the minimum threshold. |
-| ❌ **Loss** | No match | The bet is lost and added to the Jackpot Pool (unless Free Mode or the player is on the Addicted list). |
-| 🚫 **Blocked / Addicted** | Player is on the Blocked or Addicted list | Blocked players can't play at all; Addicted players play normally but with a payout cut and doubled cooldowns. |
+| ❌ **Loss** | No match | The bet is lost and added to the Jackpot Pool, the Jackpool in chat (unless Free Mode, the player is on the Addicted list, or the bet was channel points). |
+| 🚫 **Blocked / Addicted** | Player is on the Blocked or Addicted list | Blocked players can't play at all; Addicted players play normally but with a payout cut, and the per-viewer cooldown holds them on Channel Points redemptions too. |
 | ⏱️ **Cooldown** | Player spins again too soon | A cooldown message is sent instead of a spin. |
 
 ---
 
 ## 🎫 Channel Points Mode (Twitch only)
 
-When `Only Channel Points` is enabled, the chat command is effectively disabled — only viewers who redeem the configured Channel Point reward can spin. Four bet modes are available:
+When `Channel points` is picked, the chat command is switched off on Twitch — there only viewers who redeem the configured Channel Point reward can spin. YouTube and Kick have no channel points, so their chat command keeps working. Four bet modes are available:
 
 | Option | Info |
 |---------|---------|
-| **Cost** | The reward's point cost is the bet |
-| **Input** | The viewer types their bet into the reward's text field |
-| **Fixed** | Every redemption bets a fixed configured amount |
+| **Cost** | The reward's channel point cost is the bet: a loss takes no points, a win is paid in points |
+| **Input** | The viewer types a bet in their own points into the reward's text field |
+| **Fixed** | Every redemption bets a fixed configured amount, staked in channel points like Cost |
 | **Free** | All redemptions spin for free regardless of cost |
 
 ---
