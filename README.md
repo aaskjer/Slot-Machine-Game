@@ -1,82 +1,59 @@
-<p align="center"><img src="https://github.com/aaskjer/Slot-Machine-Game/blob/main/Assets/logo-small.png?raw=true" alt="SMG banner" width="400" height="400"></p>
+<p align="center">
+  <img src="https://github.com/aaskjer/Slot-Machine-Game/blob/main/Assets/logo-small.png?raw=true" alt="Slot Machine Game" width="400" height="400">
+</p>
 
-Slot Machine Game is a chat game for streamer.bot that runs on Twitch, Kick and YouTube.
+<h1 align="center">Slot Machine Game</h1>
 
-![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fimg.shields.io%2Fbadge%2Fany_text-Twitch%2C_Kick%2C_YouTube-white?label=supported%20platforms)
-![Static Badge](https://img.shields.io/badge/https%3A%2F%2Fimg.shields.io%2Fbadge%2Fany_text-streamer.bot-white?label=tool&color=%230b73ff)
-![GitHub License](https://img.shields.io/github/license/aaskjer/Slot-Machine-Game)
-![GitHub Release](https://img.shields.io/github/v/release/aaskjer/Slot-Machine-Game)
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/aaskjer/Slot-Machine-Game/total)
+<p align="center">
+  <b>Slots for your chat — on Twitch, YouTube and Kick.</b><br>
+  Emotes on the reels, rare ones pay more.
+</p>
 
----
+<p align="center">
+  <img src="https://img.shields.io/badge/platforms-Twitch%20%7C%20YouTube%20%7C%20Kick-9146FF" alt="Platforms">
+  <img src="https://img.shields.io/badge/tool-streamer.bot-0b73ff" alt="Streamer.bot">
+  <img src="https://img.shields.io/github/license/aaskjer/Slot-Machine-Game" alt="License">
+  <img src="https://img.shields.io/github/v/release/aaskjer/Slot-Machine-Game" alt="Release">
+  <img src="https://img.shields.io/github/downloads/aaskjer/Slot-Machine-Game/total" alt="Downloads">
+</p>
 
-# Overview
-
-- Runs on Twitch, YouTube and Kick.
-- Chat spins the slots with a bet: `!slots <amount>`, an alias like `all`, `half`, `third`, `quarter` or `random`, or nothing at all for the default bet.
-- Fully adjustable odds: match chance, jackpot chance, and rerolls that control how often accidental matches slip through.
-- Configurable payouts per match tier, from 2 alike up to the jackpot, scaled by emote weight so rare emotes pay more than common ones.
-- Adjustable slot count (3–6 reels), emote pool size, and which emote weights can come up.
-- Optional Jackpot Pool, fed by lost bets, that pays out on top of a jackpot once the bet reaches a minimum.
-- Optional subscriber and VIP payout boosts on Twitch; a viewer with both gets the sum.
-- Optional "Addicted" list (single users or whole Streamer.bot groups): they still play, but with penalties such as a cut on every win.
-- Keep whole Streamer.bot groups from playing.
-- Free Mode for spins without a stake, either for everyone or per trigger.
-- Detects [Currency Core by StreamUP](https://streamup.tips/product/currency-core) and [LOYALTY POINTS by tawmae](https://tawmae.xyz/loyalty-points) on its own.
-- Every chat message can be edited in the settings window: win, loss, jackpot, free spin, addicted, invalid bet and cooldown. Wording about the pool goes inside `{jackpot}...{/jackpot}` and only reaches chat while the pool is on.
-- A log file per day with every spin, searchable and filterable in the built-in log viewer.
-- A settings window with dark and light mode and six pages: it shows the odds your settings actually give, plays test spins with the exact chat message, and edits the emotes of each platform.
+<p align="center">
+  <a href="https://github.com/aaskjer/Slot-Machine-Game/releases"><b>Download</b></a> &nbsp;·&nbsp;
+  <a href="Setup-Guide.md"><b>Setup Guide</b></a> &nbsp;·&nbsp;
+  <a href="FAQ.md"><b>FAQ</b></a> &nbsp;·&nbsp;
+  <a href="Import-String.md"><b>Import String</b></a>
+</p>
 
 ---
 
-## 🎮 How It Works
+## 📖 Overview
 
-Chat spins the slots with `!slots <bet>` (or a bet alias). The game rolls the reels, checks for a match against the configured odds and settles the payout on the spot: win, jackpot or loss.
+Slot Machine Game is a chat game for Streamer.bot. Chat spins with `!slots` and a bet, the reels roll, and
+the game settles on the spot: two or more matching slots win, all of them hit the jackpot, anything else
+loses the bet.
 
-| Event | Trigger | Result |
-|---------|---------|---------|
-| 🎰 **Spin** | A viewer runs the slots command with a bet | The bet is deducted (unless in Free Mode) and the reels roll. |
-| ✅ **Win** | 2 or more slots match | The payout follows from the match tier and the emote's weight, and goes to the viewer's balance. |
-| 🔥 **Jackpot** | All slots match | The jackpot payout, plus the Jackpot Pool if the bet reached the minimum for it. |
-| ❌ **Loss** | No match | The bet is lost and goes into the Jackpot Pool, the Jackpool in chat (not in Free Mode, not for players on the Addicted list, and not when the bet was channel points). |
-| 🚫 **Blocked / Addicted** | Player is on the Blocked or Addicted list | Blocked players can't play at all. Addicted players play normally, but with a payout cut, and the per-viewer cooldown holds them on Channel Points redemptions too. |
-| ⏱️ **Cooldown** | Player spins again too soon | A cooldown message goes out instead of a spin. |
+## ✨ Highlights
 
----
-
-## 🎫 Channel Points Mode (Twitch only)
-
-With `Channel points` picked, the chat command is off on Twitch: there, only viewers who redeem the configured Channel Point reward can spin. The slot machine takes redemptions from Twitch only, so on YouTube and Kick the chat command keeps working. There are four bet modes:
-
-| Option | Info |
-|---------|---------|
-| **Cost** | The reward's channel point cost is the bet: a loss takes no points, a win is paid in points |
-| **Input** | The viewer types a bet in their own points into the reward's text field |
-| **Fixed** | Every redemption bets the same configured amount, staked in channel points like Cost |
-| **Free** | Every redemption spins for free, whatever the reward costs |
+- 🎲 **Odds you can see.** Set the match chance, the jackpot chance and the rerolls that control how often
+  accidental matches slip through. The settings window shows the odds your settings actually produce and
+  plays test spins with the exact chat message.
+- 💎 **Rare emotes pay more.** Payouts scale by match tier, from two alike up to the jackpot, and by each
+  emote's weight. Three to six reels, an adjustable emote pool, and emotes edited per platform.
+- 🎰 **A Jackpot Pool.** Lost bets feed it, and it pays out on top of a jackpot once the bet reaches a minimum.
+- 🎫 **Channel Points on Twitch.** A reward can replace the chat command, with four bet modes: cost, typed
+  input, fixed or free. YouTube and Kick keep the chat command.
+- ⚖️ **Boosts and limits.** Subscriber and VIP boosts on Twitch add up for viewers who are both. Blocked
+  groups cannot play, viewers on the Addicted list lose a cut of every win, and Free Mode spins without a
+  stake.
+- 💬 **Messages that adapt.** Every chat message is editable. Wording inside `{jackpot}…{/jackpot}` only
+  reaches chat while the pool is on.
 
 ---
 
-# Get Started
+## Credits
 
-[Setup Guide](https://github.com/aaskjer/Slot-Machine-Game/blob/main/Setup-Guide.md)
-
-[Frequently Asked Questions](https://github.com/aaskjer/Slot-Machine-Game/blob/main/FAQ.md)
-
-[Import String for streamer.bot](https://github.com/aaskjer/Slot-Machine-Game/blob/main/Import-String.md)
-
-[Download](https://github.com/aaskjer/Slot-Machine-Game/releases)
-
----
-
-# Credits & Links
-
-[aaskjer on Twitch](https://twitch.tv/aaskjer)
-
-[aaskjer.github.io](https://aaskjer.github.io/)
-
-[Slot Machine Game on SB Discord](https://discord.com/channels/834650675224248362/1446889756297527530/1446889756297527530)
-
-[Streamer.bot](https://streamer.bot) / [nate1280](https://www.patreon.com/c/nate1280/home)
-
-YOU ♡
+- **Author:** [aaskjer on Twitch](https://twitch.tv/aaskjer) · [aaskjer.github.io](https://aaskjer.github.io/)
+- **Built for:** [Streamer.bot](https://streamer.bot) by [nate1280](https://www.patreon.com/c/nate1280/home)
+- **Works with:** [Currency Core by StreamUP](https://streamup.tips/product/currency-core) · [LOYALTY POINTS by tawmae](https://tawmae.xyz/loyalty-points)
+- **Community:** [Slot Machine Game on the Streamer.bot Discord](https://discord.com/channels/834650675224248362/1446889756297527530/1446889756297527530)
+- **Thanks:** YOU ♡
