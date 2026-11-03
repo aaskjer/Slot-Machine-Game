@@ -42,7 +42,7 @@ Hover over an option for a tooltip with the details. `Save` or `Ctrl+S` keeps yo
 
 Each platform has its own list: one row per emote with the emote as chat types it, its weight and a name. A low weight comes up often and pays little, a high one is rare and pays a lot. `Add row` adds an emote, `×` takes one out, and `Restore defaults` brings back the original set of that platform.
 
-Kick shows `[emote:ID:name]` as the emote, so that is what goes into the row; the ID is the number in the address of the emote's picture. On Twitch, emotes from BTTV, 7TV and FFZ work too, but only viewers with that extension see them as emotes.
+Kick shows `[emote:ID:name]` as the emote, so that is what goes into the row; the ID is the number in the address of the emote's picture. On Twitch, emotes from BTTV, 7TV and FFZ work too; the window shows their picture and names the extension in its tooltip, and in chat only viewers with that extension see them as emotes.
 
 ## Access
 <p align="center"><img alt="Access page" src="Assets/setup-guide/access.png"></p>

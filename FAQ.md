@@ -127,7 +127,7 @@ Weight works in reverse for how often an emote comes up: low-weight emotes appea
 
 **Q: How do I edit the emotes?**
 
-On the Emotes page, each platform has its own list: one row per emote with the emote as chat types it, its weight and a name of your choosing. **Add row** adds one, **×** takes one out, and **Restore defaults** puts the built-in set of 10 back for that platform. Rows without an emote are dropped when you save.
+On the Emotes page, each platform has its own list: one row per emote with the emote as chat types it, its picture beside it once it is known, its weight and a name of your choosing. **Add row** adds one, **×** takes one out, and **Restore defaults** puts the built-in set of 10 back for that platform. Rows without an emote are dropped when you save.
 
 **Q: How do I enter a Kick emote?**
 

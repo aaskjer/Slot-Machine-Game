@@ -23,8 +23,8 @@ are shown and stored.
   window, saved or not, and *Try a spin* plays one round with the exact chat message. Which platform's emotes they
   use is picked right there.
 - **The emotes are three lists.** Twitch, YouTube and Kick sit one under the other on the Emotes page, each row an
-  emote with its weight and a name, with *Add row* and *Restore defaults*. Kick emotes are typed as
-  `[emote:ID:name]`. The emote pictures of the old window are gone.
+  emote with its picture, its weight and a name, with *Add row* and *Restore defaults*. Kick emotes are typed as
+  `[emote:ID:name]`; Twitch pictures come from Twitch, 7TV, BTTV and FFZ as before.
 - **Customise mode.** The pencil at the bottom left lets you rename, reorder, hide and move pages and fields by drag
   and drop or from the context menu, and pick the accent colour. It lives in `uiframework.layout.json` next to
   `SMG-Settings.json` and survives every import of the game.
