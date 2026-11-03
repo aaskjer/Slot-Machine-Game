@@ -31,9 +31,9 @@ Hover over an option for a tooltip with the details. `Save` or `Ctrl+S` keeps yo
 ## Game
 <p align="center"><img alt="Game page" src="Assets/setup-guide/game.png"></p>
 
-- **Slots and odds**: how many slots spin (3 to 6), the match and jackpot chances, rerolls, and which emotes play. `What really comes out` shows how often a spin really ends in a jackpot, a win or a loss, and how much a bet of 100 brings back on average, worked out from the game's own engine with the values as they stand in the window. `Emotes of` picks whose emotes the odds and the test spin use.
+- **Slots and odds**: how many slots spin (3 to 6), the match and jackpot chances, rerolls, and which emotes play. `What really comes out` shows a bar of how often a spin really ends in a jackpot, a win or a loss, and how much a bet of 100 brings back on average, worked out from the game's own engine with the values as they stand in the window. `Emotes of` picks whose emotes the odds and the test spin use.
 - **Bets and points**: default, minimum and maximum bet, Free mode, and the points variable. Currency Core by StreamUP and LOYALTY POINTS by tawmae are found on their own.
-- **Payouts**: what 2, 3, 4 and 5 alike and the jackpot pay, the Subscriber and VIP boosts, and the Addicted cut.
+- **Payouts**: what 2, 3, 4 and 5 alike and the jackpot pay (tiers the chosen number of slots can't land are greyed out), the Subscriber and VIP boosts, and the Addicted cut.
 - **Jackpot pool**: lost bets go into the Jackpool, and a jackpot with a big enough bet wins it on top.
 - **Try a spin**: pick a bet and who spins, then click `Spin` to see the slots and exactly what chat would get, with the settings as they stand on the page. Nothing is saved, and nobody's points change.
 

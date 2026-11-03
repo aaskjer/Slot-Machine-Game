@@ -40,6 +40,11 @@ are shown and stored.
 - The footer counts what is unsaved; *Reset page* puts the defaults back on the page in front only; closing the
   window with unsaved changes asks first, from Cancel and from the title bar's X alike; a recompile or shutdown in
   Streamer.bot closes it without asking.
+- A save that would not do what it looks like - a minimum bet above the maximum, Free mode off without a points
+  variable, the jackpot pool on with a bet of 0 to win it, a smallest emote weight above the largest, channel
+  points without a reward ID or with a fixed bet of 0 - lists the problem and asks before saving.
+- Payout tiers that cannot come up with the chosen number of slots are greyed out, and the fixed bet only while
+  channel points bet a fixed amount.
 - A fresh install no longer writes `SMG-Settings.json` on the first spin; the game plays on the defaults until the
   window saves.
 

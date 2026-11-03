@@ -115,7 +115,7 @@ payout      = round(payout × (1 − AddictedPayoutCut))    (only if the user is
 
 The jackpot comes first: **Jackpot chance %** of all spins land it, every slot alike. Of the other spins, **Match chance %** may land matching slots. Their slots are drawn freely, so a match is likely but not certain. Every remaining spin rerolls repeats to avoid a match, and **Rerolls** sets how hard it tries; with a small **Emote pool**, an accidental match can still slip through after every reroll. Free draws can land all alike too, so jackpots come a little more often than Jackpot chance % says.
 
-So the two chances aren't the win rate itself. **What really comes out** on the Game page works out the real odds of your settings, from 30,000 test spins with the game's own engine and the values as they stand in the window: how often a spin ends in a jackpot, a win or a loss, and what a bet of 100 comes back as on average. It follows every change you type.
+So the two chances aren't the win rate itself. **What really comes out** on the Game page works out the real odds of your settings, from 30,000 test spins with the game's own engine and the values as they stand in the window: a bar of how often a spin ends in a jackpot, a win or a loss, and what a bet of 100 comes back as on average. It follows every change you type.
 
 ---
 
