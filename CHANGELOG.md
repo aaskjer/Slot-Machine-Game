@@ -18,10 +18,10 @@ are shown and stored.
   *No* asks again next time and shows a pill in the header, *Cancel* skips that version.
 - **The window is built from the game's own settings table.** The game declares every setting once and answers the
   window's request with it, so the window and the game can never disagree about a key, a default or a range again.
-- **The odds and the test spin come out of the game's own engine.** *What really comes out* on the Game page is
-  worked out from 30,000 test spins with the very code that spins in chat, from the values as they stand in the
-  window, saved or not, and *Try a spin* plays one round with the exact chat message. Which platform's emotes they
-  use is picked right there.
+- **The test spin comes out of the game's own engine.** *Try a spin* on the Game page plays one round with the very
+  code that spins in chat, from the values as they stand in the window, saved or not: the slots as pictures, and the
+  exact chat message. The platform whose emotes spin is picked right there, since a Twitch emote only exists on
+  Twitch and a Kick emote only on Kick.
 - **The emotes are three lists.** Twitch, YouTube and Kick sit one under the other on the Emotes page, each row an
   emote with its picture, its weight and a name, with *Add row* and *Restore defaults*. Kick emotes are typed as
   `[emote:ID:name]`; Twitch pictures come from Twitch, 7TV, BTTV and FFZ as before.
