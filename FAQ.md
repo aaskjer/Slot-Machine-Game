@@ -127,11 +127,15 @@ Weight works in reverse for how often an emote comes up: low-weight emotes appea
 
 **Q: How do I edit the emotes?**
 
-On the Emotes page, each platform has its own list: one row per emote with the emote as chat types it, its picture beside it once it is known, its weight and a name of your choosing. **Add row** adds one, **×** takes one out, and **Restore defaults** puts the built-in set of 10 back for that platform. Rows without an emote are dropped when you save.
+On the Emotes page, each platform has its own list: one row per emote with the emote as chat types it, its picture beside it once it is known, and its weight. **Add row** adds one, **×** takes one out, and **Restore defaults** puts the built-in set of 10 back for that platform. Rows without an emote are dropped when you save.
 
 **Q: How do I enter a Kick emote?**
 
-Kick shows `[emote:ID:name]` as the emote, so that is what goes into the row, e.g. `[emote:1730803:emojiRich]`. To find the ID, open the emote's picture in a new browser tab: it's the number in the address (`https://files.kick.com/emotes/1730803/fullsize`).
+As `ID:name`, e.g. `1730803:emojiRich`; the game sends it as `[emote:1730803:emojiRich]`, which Kick's chat renders as the emote (that full form works in the row too). To find the ID, open the emote's picture in a new browser tab: it's the number in the address (`https://files.kick.com/emotes/1730803/fullsize`).
+
+**Q: How do I enter a YouTube emoji?**
+
+As chat types it: one of YouTube's own emojis as `:name:`, e.g. `:face-purple-rain-drops:` (the window shows its picture), or a Unicode emoji like 🍒. Emotes from BTTV or 7TV only show as emotes to viewers with that extension.
 
 ---
 
@@ -189,6 +193,10 @@ Yes. Under **Try a spin** on the Game page, pick **Addicted** as the one who spi
 **Q: How do I let people play without risking points?**
 
 Switch on **Free mode** on the Game page. No points change hands, and the **Free Win**, **Free Loss** and **Free Jackpot** messages replace the normal ones.
+
+**Q: Can a moderator switch Free mode from chat?**
+
+Yes: `!SetFreeSlots` turns it on and `!EndFreeSlots` turns it off. The two commands come with the import, disabled and for Moderators; enable them in Streamer.bot's Commands tab. The switch is written into the settings file, so the window's pill shows it, chat gets the **Started** or **Ended** message, and your own actions can listen to `SMG: Free Game Start` and `SMG: Free Game End`. An action of your own can do the same with an Execute C# Method on `StartFreeGame` or `EndFreeGame` of the game action.
 
 ---
 

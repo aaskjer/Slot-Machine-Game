@@ -12,7 +12,7 @@ Click `Import`, then `Yes` in both popups that follow.
 
 The command `[SMG] - Play Slots` arrives switched off. In the `Commands` tab, right-click the group `[SMG] Slot Machine Game` and click `Enable All`.
 
-Viewers play with `!slots` or `!spin`, on Twitch, YouTube and Kick alike. To leave a platform out, open the command and untick its source, for example `Kick Message`.
+Viewers play with `!slots` or `!spin`, on Twitch, YouTube and Kick alike. To leave a platform out, open the command and untick its source, for example `Kick Message`. `!SetFreeSlots` and `!EndFreeSlots` switch Free mode from chat; they come disabled and for Moderators, enable them if you want them.
 
 # Setup
 <p align="center"><img alt="Open the settings" src="https://github.com/user-attachments/assets/71ddb888-73fb-47bd-81eb-ec314d5d69f0"></p>
@@ -40,9 +40,9 @@ Hover over an option for a tooltip with the details. `Save` or `Ctrl+S` keeps yo
 ## Emotes
 <p align="center"><img alt="Emotes page" src="Assets/setup-guide/emotes.png"></p>
 
-Each platform has its own list: one row per emote with the emote as chat types it, its weight and a name. A low weight comes up often and pays little, a high one is rare and pays a lot. `Add row` adds an emote, `×` takes one out, and `Restore defaults` brings back the original set of that platform.
+Each platform has its own list: one row per emote with the emote as chat types it, its picture beside it once it is known, and its weight. A low weight comes up often and pays little, a high one is rare and pays a lot. `Add row` adds an emote, `×` takes one out, and `Restore defaults` brings back the original set of that platform.
 
-Kick shows `[emote:ID:name]` as the emote, so that is what goes into the row; the ID is the number in the address of the emote's picture. On Twitch, emotes from BTTV, 7TV and FFZ work too; the window shows their picture and names the extension in its tooltip, and in chat only viewers with that extension see them as emotes.
+On Twitch the emote is its name, as typed in chat (case-sensitive); emotes from BTTV, 7TV and FFZ work too, the window shows their picture and names the extension in its tooltip, and in chat only viewers with that extension see them as emotes. On YouTube the row takes one of YouTube's own emojis as chat types it, `:face-purple-rain-drops:`; a Unicode emoji works too. On Kick the row takes the emote's ID and name as `ID:name`, `1730803:emojiRich`; the game sends it as `[emote:1730803:emojiRich]`, which Kick renders as the emote. The ID is the number in the address of the emote's picture.
 
 ## Access
 <p align="center"><img alt="Access page" src="Assets/setup-guide/access.png"></p>
