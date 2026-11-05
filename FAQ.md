@@ -9,21 +9,46 @@
 In your Streamer.bot folder:
 
 ```
-Chat Games/Slot Machine Game/SMG-Settings.json      ← all settings, messages & emote pools
-Chat Games/Slot Machine Game/SMG-Settings.json.bak  ← automatic backup, written before every save
-Chat Games/Logs/SMG-log-yyyy-MM-dd.txt              ← action log, one file per day
+Chat Games/Slot Machine Game/SMG-Settings.json        ← all settings, messages & emotes
+Chat Games/Slot Machine Game/SMG-Settings.json.bak    ← automatic backup, written before every save
+Chat Games/Slot Machine Game/uiframework.layout.json  ← your layout of the window: theme, renamed or hidden pages and fields
+Chat Games/Logs/SMG-log-yyyy-MM-dd.txt                ← action log, one file per day
+UIFramework/lib/<version>/UIFramework.dll             ← the settings window, downloaded on first open
 ```
 
-There's no need to edit `SMG-Settings.json` by hand; the settings window covers all of it.
+There's no need to edit any of them by hand; the settings window covers all of it.
+
+**Q: What is UIFramework.dll, and why does the window want to download something?**
+
+The settings window is no longer part of the import. It lives in [UIFramework for streamer.bot](https://github.com/aaskjer/UIFramework-Streamer.bot),
+one window shared by all of these chat games, so a fix or a new feature there reaches every game at once. The
+`[SMG] - Settings` action only loads that DLL and hands it the game's settings table.
+
+The first open asks before fetching anything. `Yes` downloads the file from the UIFramework releases, checks it
+against the SHA-256 published next to it and puts it in `UIFramework\lib\<version>\` under your Streamer.bot
+folder. `No` opens that folder so you can place the file yourself. Later releases are offered the same way;
+`Cancel` skips one, and `"autoUpdate": false` in `uiframework.layout.json` stops the check altogether. If the log
+says `UIFramework.dll was not found`, open the window again and answer `Yes`, or put the DLL from the
+[releases](https://github.com/aaskjer/UIFramework-Streamer.bot/releases) into that folder by hand.
 
 **Q: The settings window won't open or closes right away. What do I do?**
 
 - Check the Streamer.bot log for the error and report it [here](https://github.com/aaskjer/Slot-Machine-Game/issues).
 - A damaged `SMG-Settings.json` doesn't keep the window shut. It opens with the settings from `SMG-Settings.json.bak`, or with the defaults if there's no readable backup, and keeps the damaged file as `SMG-Settings.json.broken`. Save writes a working file again.
 
+**Q: Can I rearrange the window?**
+
+Yes. The pencil at the bottom left switches to the customise mode: drag a field onto another to reorder it, onto a
+page in the rail to move it there, right-click for *Rename*, *Hide* and *Move to page*; pages can be renamed,
+reordered, given another icon or hidden the same way. The bar on top picks the accent colour, and *Reset layout*
+puts everything back. It all lives in `uiframework.layout.json` next to `SMG-Settings.json`, so an update of the
+game never undoes it. A hidden field keeps its value.
+
 **Q: How do I reset all settings to defaults?**
 
-Click the reset button at the bottom left of the settings window and confirm. The whole settings file is rewritten, default emotes for every platform included, and the command's cooldowns go back to their defaults. Only your dark or light theme stays. The window then reopens on its own.
+The circular arrow at the bottom left resets every page, the half arrow only the page in front of you; both ask
+first and write nothing until you save. A reset of everything puts the default emotes back on every platform and,
+once saved, takes the command's cooldowns back to 0. Your theme and your layout of the window stay.
 
 **Q: I saved my settings, but nothing changed in the game. Why?**
 
@@ -31,7 +56,7 @@ Click the reset button at the bottom left of the settings window and confirm. Th
 
 **Q: What does the ☀️/🌙 button at the bottom left do?**
 
-It switches the settings window between dark and light. The choice is saved, and the window reopens straight away, without your unsaved changes.
+It switches the settings window between dark and light. The choice is saved in `uiframework.layout.json` and shared with every other window built on UIFramework; the page is rebuilt in place, and your unsaved changes stay.
 
 ---
 
@@ -90,7 +115,7 @@ payout      = round(payout × (1 − AddictedPayoutCut))    (only if the user is
 
 The jackpot comes first: **Jackpot chance %** of all spins land it, every slot alike. Of the other spins, **Match chance %** may land matching slots. Their slots are drawn freely, so a match is likely but not certain. Every remaining spin rerolls repeats to avoid a match, and **Rerolls** sets how hard it tries; with a small **Emote pool**, an accidental match can still slip through after every reroll. Free draws can land all alike too, so jackpots come a little more often than Jackpot chance % says.
 
-So the two chances aren't the win rate itself. The bar at the top of the Game page works out the real odds of your settings: how often a spin ends in a jackpot, a win or a loss.
+So the two chances aren't the win rate itself. The surest way to see what your settings do is **Try a spin** on the Game page: it plays a round with the game's own engine and the values as they stand in the window, and shows the slots and the exact chat message.
 
 ---
 
@@ -102,11 +127,11 @@ Weight works in reverse for how often an emote comes up: low-weight emotes appea
 
 **Q: How do I edit the emotes?**
 
-On the Emotes page, pick a platform, enter the emote and its weight (Kick also needs an ID and a name) and click **Add**. Change a weight right in the list, or take an emote out with **×**. **Reset to default** replaces that platform's emotes with the built-in set of 10.
+On the Emotes page, each platform has its own list: one row per emote with the emote as chat types it, its picture beside it once it is known, its weight and a name of your choosing. **Add row** adds one, **×** takes one out, and **Restore defaults** puts the built-in set of 10 back for that platform. Rows without an emote are dropped when you save.
 
-**Q: Why does Kick need an ID *and* a name?**
+**Q: How do I enter a Kick emote?**
 
-Kick builds its emote codes from both, e.g. `[emote:1730803:emojiRich]`. To find the ID, open the emote's picture in a new browser tab: it's the number in the address.
+Kick shows `[emote:ID:name]` as the emote, so that is what goes into the row, e.g. `[emote:1730803:emojiRich]`. To find the ID, open the emote's picture in a new browser tab: it's the number in the address (`https://files.kick.com/emotes/1730803/fullsize`).
 
 ---
 
@@ -155,7 +180,7 @@ Yes. **Addicted Win**, **Addicted Loss** and **Addicted Jackpot** on the Message
 
 **Q: Can I preview the effect before saving?**
 
-Yes. Under **Try a spin** on the Game page, pick **Addicted** as the one who spins: the line below shows what a win and a jackpot pay them, and **Spin** plays a round with their messages.
+Yes. Under **Try a spin** on the Game page, pick **Addicted** as the one who spins and click **Spin**: it plays a round with the settings as they stand in the window, saved or not, and shows the slots and the exact message with their cut applied.
 
 ---
 
@@ -183,7 +208,7 @@ Pick the format under **Numbers** on the Messages page, e.g. `12.345` or `12,345
 
 **Q: How are cooldowns enforced?**
 
-**Everyone** and **Per viewer** under **Cooldown in seconds** on the Access page go straight into the Streamer.bot command's own cooldowns when you save. The game itself holds nothing up; it only answers in chat when Streamer.bot reports a running cooldown. For addicted players it applies the per-viewer cooldown itself, so it holds them on channel point redemptions too (see Addicted List above).
+**Everyone** and **Per viewer** under **Cooldowns** on the Access page go straight into the Streamer.bot command's own cooldowns when you save. The game itself holds nothing up; it only answers in chat when Streamer.bot reports a running cooldown. For addicted players it applies the per-viewer cooldown itself, so it holds them on channel point redemptions too (see Addicted List above).
 
 ---
 
@@ -191,7 +216,7 @@ Pick the format under **Numbers** on the Messages page, e.g. `12.345` or `12,345
 
 **Q: How do I let a Channel Points reward trigger a spin?**
 
-1. Pick **Channel points** under **How viewers play** on the Access page. On Twitch this turns the chat command off, so only the reward starts a spin there.
+1. Switch on **Channel points start a spin** on the Access page. On Twitch this turns the chat command off, so only the reward starts a spin there.
 2. Paste your **Reward ID**. Other rewards are left alone, and without a Reward ID no redemption starts a spin.
 3. Pick what is bet: **Reward cost**, **Typed amount**, **Fixed** or **Free**.
 
@@ -234,7 +259,7 @@ No, /me exists on Twitch only. On YouTube and Kick the messages always go out as
 
 **Q: How do I know if a new version is out?**
 
-Every time the settings window opens, it asks GitHub's releases API in the background (3-second timeout; offline, it stays silent). If a newer version exists, a red **Update** pill appears at the top and the window title gets a 🔔. Click the pill to open the [releases page](https://github.com/aaskjer/Slot-Machine-Game/releases).
+Every time the settings window opens, it asks GitHub's releases API in the background (offline, it stays silent). If a newer version of the game exists, a pill appears in the header; click it to open the [releases page](https://github.com/aaskjer/Slot-Machine-Game/releases). A newer UIFramework is offered in a dialog instead, and shows as a pill only after you answered `No` to it.
 
 ---
 

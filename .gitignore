@@ -6,3 +6,6 @@
 *.cs
 *.sb
 tools/
+
+# Local backups of the working copy, never published.
+Backups/
