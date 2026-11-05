@@ -3,6 +3,20 @@
 Releases are in the [release notes](https://github.com/aaskjer/Slot-Machine-Game/releases).
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [16.2.0] - Unreleased
+
+### Changed
+
+- **Emote lists without a name column.** The name of an emote is in its code: a Twitch emote is its name, a Kick
+  emote's name follows its ID, a YouTube emoji's name sits between its colons. The weight column is last.
+- **YouTube's own emojis.** The YouTube list takes the emojis YouTube's chat has (typed as `:name:`, like
+  `:face-purple-rain-drops:`), shows their pictures and starts with ten of them; the fruit emoji of earlier versions
+  were only emotes to viewers with BetterTTV. A Unicode emoji still works and shows itself.
+- **Kick emotes typed short.** `1730803:emojiRich` is enough; the game sends it as `[emote:1730803:emojiRich]`, the
+  form Kick's chat renders (that form still works in the list too). The defaults are the short form.
+- Needs UIFramework 0.9.4 or newer for the pictures of YouTube's emojis and of short Kick codes in the window; an
+  older DLL shows the lists without those pictures.
+
 ## [16.1.0] - Unreleased
 
 ### Added
