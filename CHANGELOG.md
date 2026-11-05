@@ -3,6 +3,31 @@
 Releases are in the [release notes](https://github.com/aaskjer/Slot-Machine-Game/releases).
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [16.1.0] - Unreleased
+
+### Added
+
+- **Custom triggers.** Every settled spin fires `SMG: Spin Win`, `SMG: Spin Loss` or `SMG: Spin Jackpot` (Custom >
+  Chat Game > Slot Machine Game) with the spin as arguments: `spinOutcome`, `spinUser`, `spinPlatform`, `spinSlots`,
+  `spinBet`, `spinAmount`, `spinPreviousPoints`, `spinNewPoints`, `spinCurrency`, `spinJackpotPoolWon`, `spinFree`.
+  `GetLastSpinResult`, run with an Execute C# Method sub-action on the game action, hands the same arguments to any
+  other action.
+- **Stats per viewer, for a leaderboard of your own.** Every spin updates the viewer's user variables on the platform
+  it was made on: `smg_spins`, `smg_wins`, `smg_losses`, `smg_jackpots`, `smg_totalBet`, `smg_totalWon`,
+  `smg_totalLost`, `smg_netProfit`, `smg_biggestWin`, `smg_biggestBet`, `smg_poolWon`, `smg_currentStreak`,
+  `smg_bestStreak`, `smg_userName`, `smg_firstPlayed`, `smg_lastPlayed`. Free spins count as spins, wins and jackpots
+  but move no points.
+- **German.** With the window's language set to `de` (the pencil, then *Sprache*), every setting, section, page
+  and message of the window reads in German. The help and about pages stay English.
+
+### Changed
+
+- **The settings action is UIFramework's generic stub.** `[SMG] - Settings` carries no layout and no copy of the
+  engine any more: the game action declares its window (pages, pills, the log, help and about, the `!slots`
+  cooldowns) beside its settings table and answers the window itself (the test spin with the very engine that spins
+  in chat, the check before saving, the emote pictures' sources). Needs UIFramework 0.9.2 or newer; the stub
+  fetches it.
+
 ## [16.0.0] - 2026-11-03
 
 The settings window moved into [UIFramework for streamer.bot](https://github.com/aaskjer/UIFramework-Streamer.bot),

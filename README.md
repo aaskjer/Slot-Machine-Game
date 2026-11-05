@@ -47,6 +47,9 @@ loses the bet.
   stake.
 - 💬 **Messages that adapt.** Every chat message is editable. Wording inside `{jackpot}…{/jackpot}` only
   reaches chat while the pool is on.
+- 🔔 **Hooks for your own actions.** Custom triggers for every win, loss and jackpot with the spin as arguments,
+  and per-viewer stats (spins, wins, jackpots, net profit, streaks, …) in Streamer.bot's user variables for a
+  leaderboard of your own.
 - ⚙️ **One settings window.** Built on [UIFramework for streamer.bot](https://github.com/aaskjer/UIFramework-Streamer.bot)
   and downloaded on first open: light and dark themes, every message with a live preview, and a customise mode
   that lets you rename, reorder and hide pages and fields.
