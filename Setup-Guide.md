@@ -12,7 +12,7 @@ Click `Import`, then `Yes` in both popups that follow.
 
 The command `[SMG] - Play Slots` arrives switched off. In the `Commands` tab, right-click the group `[SMG] Slot Machine Game` and click `Enable All`.
 
-Viewers play with `!slots` or `!spin`, on Twitch, YouTube and Kick alike. To leave a platform out, open the command and untick its source, for example `Kick Message`.
+Viewers play with `!slots` or `!spin`, on Twitch, YouTube and Kick alike. To leave a platform out, open the command and untick its source, for example `Kick Message`. `!SetFreeSlots` and `!EndFreeSlots` switch Free mode from chat; they come disabled and for Moderators, enable them if you want them.
 
 # Setup
 <p align="center"><img alt="Open the settings" src="https://github.com/user-attachments/assets/71ddb888-73fb-47bd-81eb-ec314d5d69f0"></p>

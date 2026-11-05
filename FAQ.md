@@ -194,6 +194,10 @@ Yes. Under **Try a spin** on the Game page, pick **Addicted** as the one who spi
 
 Switch on **Free mode** on the Game page. No points change hands, and the **Free Win**, **Free Loss** and **Free Jackpot** messages replace the normal ones.
 
+**Q: Can a moderator switch Free mode from chat?**
+
+Yes: `!SetFreeSlots` turns it on and `!EndFreeSlots` turns it off. The two commands come with the import, disabled and for Moderators; enable them in Streamer.bot's Commands tab. The switch is written into the settings file, so the window's pill shows it, chat gets the **Started** or **Ended** message, and your own actions can listen to `SMG: Free Game Start` and `SMG: Free Game End`. An action of your own can do the same with an Execute C# Method on `StartFreeGame` or `EndFreeGame` of the game action.
+
 ---
 
 ## 💬 Messages & Customization

@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [16.2.0] - Unreleased
 
+### Added
+
+- **Free mode from chat.** `!SetFreeSlots` turns Free mode on and `!EndFreeSlots` turns it off (moderators; two
+  new commands in the import, disabled until you enable them). The switch is written into the settings file, so the
+  window's pill shows it, and chat gets the new Started and Ended messages (Messages page, Free mode). An action of
+  your own can do the same with an Execute C# Method on `StartFreeGame` or `EndFreeGame`.
+- **Three more custom triggers.** `SMG: Free Game Start` and `SMG: Free Game End` fire when Free mode is switched;
+  `SMG: Spin Free` fires on every free spin, on top of its Win, Loss or Jackpot trigger.
+
 ### Changed
 
 - **Emote lists without a name column.** The name of an emote is in its code: a Twitch emote is its name, a Kick

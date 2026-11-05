@@ -47,6 +47,8 @@ loses the bet.
   stake.
 - 💬 **Messages that adapt.** Every chat message is editable. Wording inside `{jackpot}…{/jackpot}` only
   reaches chat while the pool is on.
+- 🆓 **Free mode from chat.** `!SetFreeSlots` and `!EndFreeSlots` (moderators) switch Free mode, with a message
+  to chat and a custom trigger each.
 - 🔔 **Hooks for your own actions.** Custom triggers for every win, loss and jackpot with the spin as arguments,
   and per-viewer stats (spins, wins, jackpots, net profit, streaks, …) in Streamer.bot's user variables for a
   leaderboard of your own.
