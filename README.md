@@ -15,6 +15,7 @@
   <img src="https://img.shields.io/github/license/aaskjer/Slot-Machine-Game" alt="License">
   <img src="https://img.shields.io/github/v/release/aaskjer/Slot-Machine-Game" alt="Release">
   <img src="https://img.shields.io/github/downloads/aaskjer/Slot-Machine-Game/total" alt="Downloads">
+  <img src="https://img.shields.io/github/stars/aaskjer/Slot-Machine-Game" alt="Stars">
 </p>
 
 <p align="center">
