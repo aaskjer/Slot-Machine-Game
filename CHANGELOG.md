@@ -3,7 +3,7 @@
 Releases are in the [release notes](https://github.com/aaskjer/Slot-Machine-Game/releases).
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [16.2.0] - Unreleased
+## [16.2.0] - 2026-11-06
 
 ### Added
 
@@ -25,8 +25,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   form Kick's chat renders (that form still works in the list too). The defaults are the short form.
 - Needs UIFramework 0.9.4 or newer for the pictures of YouTube's emojis and of short Kick codes in the window; an
   older DLL shows the lists without those pictures.
+- The host block is UIFramework's current one (0.9.10); nothing changes in the window. The window itself, with
+  UIFramework 0.9.10, puts the weight column at half width and lets the customise mode place fields side by side.
 
-## [16.1.0] - Unreleased
+## [16.1.0] - 2026-11-06
 
 ### Added
 
