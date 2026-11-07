@@ -57,6 +57,11 @@ loses the bet.
   and downloaded on first open: light and dark themes, every message with a live preview, and a customise mode
   that lets you rename, reorder and hide pages and fields.
 
+<p align="center">
+  <img src="https://github.com/aaskjer/Slot-Machine-Game/blob/main/Assets/readme/settings-game.png?raw=true" alt="The Game page of the settings window" height="460">
+  <img src="https://github.com/aaskjer/Slot-Machine-Game/blob/main/Assets/readme/settings-emotes.png?raw=true" alt="The reels' emotes with their pictures and weights" height="460">
+</p>
+
 ---
 
 ## Credits
