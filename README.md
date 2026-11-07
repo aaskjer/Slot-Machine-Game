@@ -57,23 +57,10 @@ loses the bet.
   and downloaded on first open: light and dark themes, every message with a live preview, and a customise mode
   that lets you rename, reorder and hide pages and fields.
 
----
-
-## ⚙️ Settings window
-
-The settings action opens a window from [UIFramework for streamer.bot](https://github.com/aaskjer/UIFramework-Streamer.bot),
-a separate DLL that is fetched automatically.
-
-- **First open:** a dialog asks whether to download `UIFramework.dll` from the framework's GitHub release into
-  `<Streamer.bot>\UIFramework\lib\`. The file is checked against its published SHA-256 before it is used. *No*
-  opens that folder so you can put the DLL there yourself; *Cancel* leaves everything as it is.
-- **Updates:** when a newer framework release is out, the window asks before it downloads anything. *Cancel* skips
-  that version for good.
-- **Turning the update check off:** put `"autoUpdate": false` into `uiframework.layout.json`, next to the settings
-  file `<Streamer.bot>\Chat Games\Slot Machine Game\SMG-Settings.json` (create it as `{ "autoUpdate": false }` if it is not there yet). The window then
-  opens with the DLL it has and asks nothing.
-- **Without the window:** the game itself never loads the DLL. Disable the settings action and the game plays on
-  with its settings file, which you can still edit by hand.
+<p align="center">
+  <img src="https://github.com/aaskjer/Slot-Machine-Game/blob/main/Assets/readme/settings-game.png?raw=true" alt="The Game page of the settings window" height="460">
+  <img src="https://github.com/aaskjer/Slot-Machine-Game/blob/main/Assets/readme/settings-emotes.png?raw=true" alt="The reels' emotes with their pictures and weights" height="460">
+</p>
 
 ---
 
