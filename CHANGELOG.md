@@ -15,6 +15,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- **Only the fields your setup uses.** *Fixed bet* shows while the channel point bet mode is *Fixed*, and the
+  *3 alike*, *4 alike* and *5 alike* payouts only with enough slots to pay them (4, 5, 6); before, they stood
+  there greyed out.
 - **The settings action is UIFramework's stub 0.2.0.** When the game action hangs, the settings window waits 30
   seconds for its answer, then carries on and can be closed; before, it waited for good. A game that has not
   described itself for a minute no longer locks the settings until Streamer.bot restarts: the next run opens the
