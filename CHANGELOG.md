@@ -3,6 +3,17 @@
 Releases are in the [release notes](https://github.com/aaskjer/Slot-Machine-Game/releases).
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [16.4.0] - 2026-11-08
+
+### Added
+
+- **Tells you about updates.** Once per Streamer.bot start, about 20 seconds in, one notice names new releases of
+  this game, of the other UIFramework games and of UIFramework: in every chat whose broadcaster account is
+  connected (Twitch, YouTube, Kick), or as a Windows notification while none is. The links are in Streamer.bot's
+  log. *Tell me about updates* on the About page turns it off for this game. The game action is precompiled on
+  application start, so the notice starts with Streamer.bot.
+- The host block is UIFramework 1.4.0's; the settings window offers the newest UIFramework on its next open.
+
 ## [16.3.0] - 2026-11-07
 
 ### Added
