@@ -3,6 +3,22 @@
 Releases are in the [release notes](https://github.com/aaskjer/Slot-Machine-Game/releases).
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [16.4.1] - 2026-11-12
+
+### Fixed
+
+- **The settings action passes over a UIFramework it is too old for.** Every game in a Streamer.bot shares the
+  installed UIFramework.dll. Should a later one need a newer settings action than this game's, the action now
+  leaves that file alone and opens the window with an older one that fits, with a line in the log; it used to
+  load whatever was newest. (Settings action 0.2.1.)
+- **The update notice works with a UIFramework.dll you put in by hand.** A file saved from the browser carries
+  Windows' "downloaded from the internet" mark, and the game did not load it: the notice at Streamer.bot's start
+  never came. A file damaged since its download is no longer loaded for it.
+
+### Changed
+
+- The host block is UIFramework 1.8.4's. Nothing in your settings changes.
+
 ## [16.4.0] - 2026-11-08
 
 ### Added
