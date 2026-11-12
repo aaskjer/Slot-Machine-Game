@@ -3,6 +3,68 @@
 Releases are in the [release notes](https://github.com/aaskjer/Slot-Machine-Game/releases).
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [16.4.2] - 2026-11-12
+
+### Added
+
+- **aaskjer on Twitch** is back among the links of the About page.
+- **What really comes out is back on the Game page.** Its button works out the odds of the settings as they stand,
+  from 30,000 test spins: jackpot, win and loss as a bar, and what a bet of 100 comes back as. It went missing
+  with 16.1.0.
+
+### Changed
+
+- **The update question says when Streamer.bot needs a restart.** A newer UIFramework can be used at once only
+  while none is running in your Streamer.bot; otherwise it takes effect after a restart. The dialog now says which
+  of the two it is, and after such a download a note says it again: restart when it suits you, everything goes on
+  as before until then.
+- **No and Cancel swap places in the update question.** *Yes* takes the new UIFramework, *No* now skips that
+  version, and *Cancel*, the X and Esc ask again at the next open. Up to 16.4.1, *No* asked again, and *Cancel* or
+  closing the dialog skipped the version for good.
+- **A skipped version is skipped in every game** on settings action 0.3.0 or newer. It is kept once, in
+  `UIFramework\loader.json` beside Streamer.bot, and so is `"autoUpdate": false`. What a game's
+  `uiframework.layout.json` holds is still read, and it is all a game on an older settings action reads.
+- **The game action is precompiled on application start**, as 16.4.0 meant it to be: the update notice and the
+  custom triggers now come with Streamer.bot's start instead of with the first spin or the first open of the window.
+- The settings action is 0.3.1, the host block UIFramework 1.9.0's with the fixes below. Nothing in your settings
+  changes.
+
+### Fixed
+
+- **A download GitHub does not deliver is tried three times** before the settings action gives up, also when the
+  connection breaks off while the file comes in. Only after the last try does the dialog say the file doesn't match.
+- **No answer from the game shows as no answer.** A Try button said "done" and a table showed as empty when the
+  game action did not answer, and a game action that ran without answering counted as an empty answer, so a save
+  went on as checked.
+- **A UIFramework that needs a newer settings action no longer locks the window.** When another game had installed
+  one, the update notice loaded it at Streamer.bot's start, and since only one UIFramework runs in a Streamer.bot,
+  this window then failed on every open. The game now loads the newest one its settings action fits.
+- **A list where a version belongs no longer breaks every open.** `skipVersion` in `loader.json` or the layout
+  file, or `minHostStub` in `latest.json`, made the window fail; such a value now counts as missing.
+- **An unreadable `UIFramework\loader.json` is not written over.** *No* replaced it with a file holding only the
+  skip; now the log says it can't be read, and the skip goes into this game's layout file.
+- **A run that a later one took over ends there.** When the game had hung for a minute and answered after all, the
+  first run went on to the update dialog and opened the window a second time.
+- **Two runs that end together leave the window free.** Neither handed it back, and the next open showed the old
+  window without asking the game.
+- **A late answer is not taken for the next one.** Every request to the game has a variable of its own.
+- **`!SetFreeSlots` and `!EndFreeSlots` leave a damaged settings file alone.** They wrote a file with nothing but
+  the Free mode switch in its place, and the damaged one over the `.bak`, so every setting was gone. Now Free mode
+  stays as it is and the log says why.
+- **The check before saving names the Default bet again**: 0, or below the Minimum or above the Maximum, so that a
+  spin without an amount is refused. It also names a Fixed bet outside Minimum and Maximum.
+- **Nobody spins for 0.** A viewer with no points could bet 0 with `all`, `random` or a typed 0 while the Minimum
+  was 0, and with no bet needed for the Jackpool, win the whole pool. Now they hear that they don't have enough.
+- **Free mode spins a "Typed amount" redemption for free.** It was refused and refunded when the viewer had fewer
+  points than they typed.
+- **Points another action credits during a spin are kept.** The spin now settles on the balance as it is when it
+  writes, not as it was when it started; the Jackpool is taken and filled one spin at a time.
+- **`StartFreeGame` and `EndFreeGame` from an action of your own read the settings again.** They used those of the
+  last spin and could take Free mode for on when the window had turned it off since, or answer in the wrong chat.
+- **The log keeps its time on every Windows.** On a system whose time separator is not a colon (Finnish, Danish,
+  Indonesian) the Log page found no time in the lines.
+- **A message of exactly 500 characters goes out as one** (200 on YouTube); it was cut in two.
+
 ## [16.4.1] - 2026-11-12
 
 ### Fixed
@@ -79,6 +141,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [16.1.0] - 2026-11-06
 
+Not released on its own: it went out with 16.2.0.
+
 ### Added
 
 - **Custom triggers.** Every settled spin fires `SMG: Spin Win`, `SMG: Spin Loss` or `SMG: Spin Jackpot` (Custom >
@@ -102,7 +166,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   in chat, the check before saving, the emote pictures' sources). Needs UIFramework 0.9.2 or newer; the stub
   fetches it.
 
-## [16.0.0] - 2026-11-03
+## [16.0.0] - 2026-11-05
 
 The settings window moved into [UIFramework for streamer.bot](https://github.com/aaskjer/UIFramework-Streamer.bot),
 one window shared by all of these chat games. The spin plays exactly as before; what changed is how the settings
@@ -154,3 +218,12 @@ are shown and stored.
 ## [15.0.1] - 2026-10-25
 
 See the [release notes](https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1).
+
+[16.4.2]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.2
+[16.4.1]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.1
+[16.4.0]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.0
+[16.3.0]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.3.0
+[16.2.0]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0
+[16.1.0]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.2.0
+[16.0.0]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.0.0
+[15.0.1]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1

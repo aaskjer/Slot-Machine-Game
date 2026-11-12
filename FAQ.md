@@ -26,9 +26,12 @@ one window shared by all of these chat games, so a fix or a new feature there re
 
 The first open asks before fetching anything. `Yes` downloads the file from the UIFramework releases, checks it
 against the SHA-256 published next to it and puts it in `UIFramework\lib\<version>\` under your Streamer.bot
-folder. `No` opens that folder so you can place the file yourself. Later releases are offered the same way;
-`Cancel` skips one, and `"autoUpdate": false` in `uiframework.layout.json` stops the check altogether. If the log
-says `UIFramework.dll was not found`, open the window again and answer `Yes`, or put the DLL from the
+folder. `No` opens that folder so you can place the file yourself. Later releases are offered in a dialog of their
+own: `Yes` takes one, `No` skips it, `Cancel` asks again at the next open, and the dialog says whether
+Streamer.bot has to be restarted for it. A `UIFramework\loader.json` under your Streamer.bot folder holding
+`{ "autoUpdate": false }` stops the check for every game on settings action 0.3.0 or newer (this one has 0.3.1);
+a game on an older one only reads its own `uiframework.layout.json`. If the log says `UIFramework.dll was not found`, open
+the window again and answer `Yes`, or put the DLL from the
 [releases](https://github.com/aaskjer/UIFramework-Streamer.bot/releases) into that folder by hand.
 
 **Q: The settings window won't open or closes right away. What do I do?**
@@ -84,7 +87,7 @@ A bet is refused, with the matching error message, if it isn't a whole positive 
 
 **Q: How do I block specific users or groups from playing entirely?**
 
-Add their Streamer.bot user groups under **Blocked groups** on the Access page: type a group name and press Enter. Members can't play and get no message; a channel point redemption of theirs is refunded. That's different from the **Addicted** list (see below), whose members still play, with penalties.
+Add their Streamer.bot user groups under **Blocked groups** on the Access page: type a group name and press Enter. Members can't play and get no message for the chat command; a channel point redemption of theirs is refunded while refunds are on, and chat gets the Refunded message. That's different from the **Addicted** list (see below), whose members still play, with penalties.
 
 ---
 
@@ -123,7 +126,7 @@ So the two chances aren't the win rate itself. The surest way to see what your s
 
 **Q: What does an emote's weight actually do?**
 
-Weight works in reverse for how often an emote comes up: low-weight emotes appear often and pay less per match, high-weight ones are rarer and pay more. Only emotes with a weight between **Min weight** and **Max weight** can appear at all, which lets you leave out the cheapest or the most valuable ones.
+Weight works in reverse for how often an emote comes up: low-weight emotes appear often and pay less per match, high-weight ones are rarer and pay more. Only emotes with a weight between **Min weight** and **Max weight** can appear at all, which lets you leave out the cheapest or the most valuable ones. If no emote is within them, all of them play.
 
 **Q: How do I edit the emotes?**
 
@@ -255,7 +258,7 @@ On the Log page. It merges every day's log file into one table: search it for na
 
 **Q: Which platforms are supported?**
 
-Twitch, YouTube and Kick, all at once: the game plays on every platform its chat command listens to. To leave a platform out, untick it in the command in Streamer.bot (for example **Kick Message**). The platform is detected from the incoming event, and each platform keeps its own Jackpot Pool, points balances and command cooldowns.
+Twitch, YouTube and Kick, all at once: the game plays on every platform its chat command listens to. To leave a platform out, untick it in the command in Streamer.bot (for example **Kick Message**). The platform is detected from the incoming event, and each platform keeps its own Jackpot Pool and points balances. The cooldowns are the command's own in Streamer.bot.
 
 **Q: Does "Send as /me" work on YouTube and Kick?**
 
@@ -267,7 +270,7 @@ No, /me exists on Twitch only. On YouTube and Kick the messages always go out as
 
 **Q: How do I know if a new version is out?**
 
-Every time the settings window opens, it asks GitHub's releases API in the background (offline, it stays silent). If a newer version of the game exists, a pill appears in the header; click it to open the [releases page](https://github.com/aaskjer/Slot-Machine-Game/releases). A newer UIFramework is offered in a dialog instead, and shows as a pill only after you answered `No` to it.
+Every time the settings window opens, it asks GitHub's releases API in the background (offline, it stays silent). If a newer version of the game exists, a pill appears in the header; click it to open the [releases page](https://github.com/aaskjer/Slot-Machine-Game/releases). A newer UIFramework is offered in a dialog instead, and shows as a pill only after you answered `Cancel` to it.
 
 ---
 

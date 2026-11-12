@@ -12,7 +12,7 @@ Click `Import`, then `Yes` in both popups that follow.
 
 The command `[SMG] - Play Slots` arrives switched off. In the `Commands` tab, right-click the group `[SMG] Slot Machine Game` and click `Enable All`.
 
-Viewers play with `!slots` or `!spin`, on Twitch, YouTube and Kick alike. To leave a platform out, open the command and untick its source, for example `Kick Message`. `!SetFreeSlots` and `!EndFreeSlots` switch Free mode from chat; they come disabled and for Moderators, enable them if you want them.
+Viewers play with `!slots` or `!spin`, on Twitch, YouTube and Kick alike. To leave a platform out, open the command and untick its source, for example `Kick Message`. `!SetFreeSlots` and `!EndFreeSlots` switch Free mode from chat, for Moderators. They are in the same group, so `Enable All` switches them on too; disable them again if you don't want them.
 
 # Setup
 <p align="center"><img alt="Open the settings" src="https://github.com/user-attachments/assets/71ddb888-73fb-47bd-81eb-ec314d5d69f0"></p>
@@ -20,20 +20,22 @@ Viewers play with `!slots` or `!spin`, on Twitch, YouTube and Kick alike. To lea
 In the `Actions` tab, select `[SMG] - Settings`, right-click `Test` in its trigger list and click `Test Trigger`. The settings window opens.
 
 The first time, a small dialog asks whether to download `UIFramework.dll` — the settings window itself, shared by
-all of these chat games and kept at [aaskjer/UIFramework-Streamer.bot](https://github.com/aaskjer/UIFramework-Streamer.bot).
-`Yes` fetches it (about 200 KB, checked against its published hash) into `UIFramework\lib\<version>\` next to
-Streamer.bot and opens the window. `No` opens that folder instead, for when you would rather drop the file in by
-hand from the [releases](https://github.com/aaskjer/UIFramework-Streamer.bot/releases). When a newer window is
-released the same dialog comes back once; `Cancel` skips that version.
+all of these chat games and kept at
+[aaskjer/UIFramework-Streamer.bot](https://github.com/aaskjer/UIFramework-Streamer.bot). `Yes` fetches it (about
+200 KB, checked against its published hash) into `UIFramework\lib\<version>\` next to Streamer.bot and opens the
+window. `No` opens that folder instead, for when you would rather drop the file in by hand from the
+[releases](https://github.com/aaskjer/UIFramework-Streamer.bot/releases). When a newer window is released a dialog
+offers it: `No` skips that version, `Cancel` asks again at the next open. The dialog also says whether
+Streamer.bot has to be restarted for the new window.
 
 Hover over an option for a tooltip with the details. `Save` or `Ctrl+S` keeps your changes, `Save & Exit` also closes the window, and `Ctrl+1` to `Ctrl+7` jump between the pages. The buttons at the bottom left switch between dark and light, reset everything or only the page in front, and open the customise mode: rename, reorder, hide or move pages and fields by drag and drop or from their context menu, pick an accent colour, and the window keeps that layout in `uiframework.layout.json` next to the settings — through every update of the game. When a new version of the game is out, a pill shows up in the header.
 
 ## Game
 <p align="center"><img alt="Game page" src="Assets/setup-guide/game.png"></p>
 
-- **Slots and odds**: how many slots spin (3 to 6), the match and jackpot chances, rerolls, and which emotes play.
+- **Slots and odds**: how many slots spin (3 to 6), the match and jackpot chances, rerolls, and which emotes play. `What really comes out` works out the odds these settings give.
 - **Bets and points**: default, minimum and maximum bet, Free mode, and the points variable. Currency Core by StreamUP and LOYALTY POINTS by tawmae are found on their own.
-- **Payouts**: what 2, 3, 4 and 5 alike and the jackpot pay (tiers the chosen number of slots can't land are greyed out), the Subscriber and VIP boosts, and the Addicted cut.
+- **Payouts**: what 2, 3, 4 and 5 alike and the jackpot pay (tiers the chosen number of slots can't land are hidden), the Subscriber and VIP boosts, and the Addicted cut.
 - **Jackpot pool**: lost bets go into the Jackpool, and a jackpot with a big enough bet wins it on top.
 - **Try a spin**: pick the platform whose emotes spin (a Twitch emote only exists on Twitch), a bet and who spins, then click `Spin` to see the slots as pictures and exactly what chat would get, with the settings as they stand on the page. Nothing is saved, and nobody's points change.
 
@@ -58,7 +60,7 @@ On Twitch the emote is its name, as typed in chat (case-sensitive); emotes from 
 2. Paste the ID of your reward into `Reward ID`; the tooltip names a page that lists your rewards with their IDs. Without one, no redemption starts a spin.
 3. Pick what is bet: `Reward cost`, `Typed amount`, `Fixed` or `Free`.
 
-A redemption that doesn't end in a spin is refunded, as long as the reward doesn't skip the reward requests queue.
+With `Refund redemptions that don't end in a spin` on, as it is by default, a redemption that doesn't end in a spin is refunded, as long as the reward doesn't skip the reward requests queue.
 
 WIP - May not work as intended because it was taken from another game and i'm still not an affiliate so i can't properly test it. Please report [here](https://github.com/aaskjer/Slot-Machine-Game/issues) on issues.
 
