@@ -26,9 +26,11 @@ one window shared by all of these chat games, so a fix or a new feature there re
 
 The first open asks before fetching anything. `Yes` downloads the file from the UIFramework releases, checks it
 against the SHA-256 published next to it and puts it in `UIFramework\lib\<version>\` under your Streamer.bot
-folder. `No` opens that folder so you can place the file yourself. Later releases are offered the same way;
-`Cancel` skips one, and `"autoUpdate": false` in `uiframework.layout.json` stops the check altogether. If the log
-says `UIFramework.dll was not found`, open the window again and answer `Yes`, or put the DLL from the
+folder. `No` opens that folder so you can place the file yourself. Later releases are offered in a dialog of their
+own: `Yes` takes one, `No` skips it, `Cancel` asks again at the next open, and the dialog says whether
+Streamer.bot has to be restarted for it. A `UIFramework\loader.json` under your Streamer.bot folder holding
+`{ "autoUpdate": false }` stops the check for every game. If the log says `UIFramework.dll was not found`, open
+the window again and answer `Yes`, or put the DLL from the
 [releases](https://github.com/aaskjer/UIFramework-Streamer.bot/releases) into that folder by hand.
 
 **Q: The settings window won't open or closes right away. What do I do?**
@@ -267,7 +269,7 @@ No, /me exists on Twitch only. On YouTube and Kick the messages always go out as
 
 **Q: How do I know if a new version is out?**
 
-Every time the settings window opens, it asks GitHub's releases API in the background (offline, it stays silent). If a newer version of the game exists, a pill appears in the header; click it to open the [releases page](https://github.com/aaskjer/Slot-Machine-Game/releases). A newer UIFramework is offered in a dialog instead, and shows as a pill only after you answered `No` to it.
+Every time the settings window opens, it asks GitHub's releases API in the background (offline, it stays silent). If a newer version of the game exists, a pill appears in the header; click it to open the [releases page](https://github.com/aaskjer/Slot-Machine-Game/releases). A newer UIFramework is offered in a dialog instead, and shows as a pill only after you answered `Cancel` to it.
 
 ---
 
