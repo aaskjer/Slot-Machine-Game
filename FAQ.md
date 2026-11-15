@@ -29,7 +29,7 @@ against the SHA-256 published next to it and puts it in `UIFramework\lib\<versio
 folder. `No` opens that folder so you can place the file yourself. Later releases are offered in a dialog of their
 own: `Yes` takes one, `No` skips it, `Cancel` asks again at the next open, and the dialog says whether
 Streamer.bot has to be restarted for it. A `UIFramework\loader.json` under your Streamer.bot folder holding
-`{ "autoUpdate": false }` stops the check for every game on settings action 0.3.0 or newer (this one has 0.3.1);
+`{ "autoUpdate": false }` stops the check for every game on settings action 0.3.0 or newer (this one has 0.3.2);
 a game on an older one only reads its own `uiframework.layout.json`. If the log says `UIFramework.dll was not found`, open
 the window again and answer `Yes`, or put the DLL from the
 [releases](https://github.com/aaskjer/UIFramework-Streamer.bot/releases) into that folder by hand.
