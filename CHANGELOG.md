@@ -3,6 +3,32 @@
 Releases are in the [release notes](https://github.com/aaskjer/Slot-Machine-Game/releases).
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [16.4.3] - 2026-11-15
+
+### Changed
+
+- **The settings window speaks French and Brazilian Portuguese too,** beside English, German and Spanish: its
+  pages, buttons and dialogs and the settings this game shares with the other chat games. The settings only the
+  slot machine has stay in English, or German.
+- **Blocked groups and Addicted groups suggest your Streamer.bot groups.** Click into the field and a list shows
+  the groups not added yet, narrowed as you type.
+- The settings action is 0.3.2, the host block UIFramework 2.0.0's. The window is offered UIFramework 2.0.0 from
+  now on; a game on an older settings action stays on 1.9.0. Nothing in your settings changes.
+
+### Fixed
+
+- **The emote pictures no longer hold the window still.** The window asked the game for them on its own thread and
+  froze for up to five seconds when the game was busy. Each picture now shows once it has come.
+- **The question after the check before saving belongs to the window.** Switched to another window meanwhile, the
+  settings window could be clicked and closed with the question still open, and didn't open again until it was
+  answered.
+- **The Log page's folder button opens `Chat Games\Logs` beside Streamer.bot,** also after an export or import
+  in the window. Spins logged in the same second show newest first.
+- **The update notice at Streamer.bot's start** takes the next older UIFramework when the newest is damaged, and
+  no longer names a UIFramework release you skipped.
+- **A UIFramework another game loaded for a newer settings action no longer stops this window,** and a damaged
+  download is set aside and offered again also while an older UIFramework runs.
+
 ## [16.4.2] - 2026-11-12
 
 ### Added
@@ -219,6 +245,7 @@ are shown and stored.
 
 See the [release notes](https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v15.0.1).
 
+[16.4.3]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.3
 [16.4.2]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.2
 [16.4.1]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.1
 [16.4.0]: https://github.com/aaskjer/Slot-Machine-Game/releases/tag/v16.4.0
